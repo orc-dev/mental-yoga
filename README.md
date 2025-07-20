@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Mental Yoga
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+...
 
-## Available Scripts
+## Design Specifications
 
-In the project directory, you can run:
+### Problem Levels
 
-### `npm start`
+We design 6 level of problems (from easy to challenging) on testing the mental simulation process of the transformation between a cube to some valid net, while maintaining correct geometric and physical properties.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Level 1
+- **Label:** `valid-net`
+- **Description:** Given a 2D pattern of six connected square faces, determine whether it forms a valid cube net.
+- **Prompt:** "Is the given pattern a valid cube net?"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Level 2
+- **Label:** `opposite-faces`
+- **Description:** Given a valid cube net with one face highlighted, identify the face opposite to it when the net is folded into a cube.
+- **Prompt:** "Select the face opposite to the highlighted one when folded into a cube."
 
-### `npm test`
+#### Level 3
+- **Label:** `overlapping-edges`
+- **Description:** Given a valid cube net with one edge highlighted, identify the edge that overlaps with it when the net is folded into a cube.
+- **Prompt:** "Select the edge that overlaps with the highlighted one when folded into a cube."
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Level 4
+- **Label:** `overlapping-vertices`
+- **Description:** Given a valid cube net with one vertex highlighted, identify the two vertices that overlap with it when the net is folded into a cube.
+- **Prompt:** "Select the two vertices that overlap with the highlighted one when folded into a cube."
 
-### `npm run build`
+#### Level 5
+- **Label:** `face-orientation-tracing-folding`
+- **Description:** Given a valid cube net with one face marked as the base, and a "Huntress" cube that has arrows on two of its faces, select the correct orientation of these arrows on the unfolded net.
+- **Prompt:** "Select the correct arrow orientations on the net when the cube is placed on the highlighted base face and unfolded."
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Level 6
+- **Label:** `face-orientation-tracing-unfolding`
+- **Description:** Given a valid cube net with one face marked as the base, and an "Evil-Eye" cube that has eye symbols on three faces, rotate the cube so that, when unfolded at the base, it matches the given net pattern.
+- **Prompt:** "Rotate the cube so that its unfolded net matches the given pattern when opened at the highlighted base face."
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Coordinate System Specification
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# FoldableCube
+```
+    FoldableCube
+    |- BoneCube
+    |   |- 6 face coord * (4 edge coord, 1 skin-slot coord) 
+    |   |- anim
+    |
+    |- SkinCube
+        |- rotationMap
+        |- skinRefs
+```
