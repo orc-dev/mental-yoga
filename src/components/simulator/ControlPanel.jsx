@@ -54,10 +54,12 @@ function ResetCameraButton() {
 }
 
 function ControlPanel() {
-    const { cubeRef, coach, cookie, ogre, chicken, rocket } = useAppContext();
+    // eslint-disable-next-line
+    const { cubeRef, coach, cookie, ogre, chicken, pipeline, rocket } = useAppContext();
 
     useEffect(() => {
-        cubeRef.current = ogre.current;
+        cubeRef.current = pipeline.current;
+    // eslint-disable-next-line
     }, []);
 
     const divider = (text) => {

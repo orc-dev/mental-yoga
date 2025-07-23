@@ -9,8 +9,10 @@ export const AppContextProvider = ({ children }) => {
     const sliderRef = useRef(null);
 
     const cubeRef = useRef();
-    const coach = useRef(new CubeEngine());
-
+    const coach = useRef(new CubeEngine({
+        cubeType: 'coach',
+        initPos: [-2, CubeEngine.HALF_UNIT, 0],
+    }));
     const cookie = useRef(new CubeEngine({
         cubeType: 'cookie',
         initPos: [4, CubeEngine.HALF_UNIT, 0],
@@ -19,17 +21,22 @@ export const AppContextProvider = ({ children }) => {
         cubeType: 'chicken', 
         initPos: [2, CubeEngine.HALF_UNIT, 0],
     }));
+    const pipeline = useRef(new CubeEngine({
+        cubeType: 'pipeline', 
+        initPos: [0, CubeEngine.HALF_UNIT, 3],
+    }));
+
     const ogre = useRef(new CubeEngine({
         cubeType: 'ogre',
-        initPos: [2, CubeEngine.HALF_UNIT, 3],
+        initPos: [0, CubeEngine.HALF_UNIT, 0],
     }));
     const rocket = useRef(new CubeEngine({
         cubeType: 'rocket', 
-        initPos: [-2, CubeEngine.HALF_UNIT, 0],
+        initPos: [-4, CubeEngine.HALF_UNIT, 0],
     }));
     const cosmos = useRef(new CubeEngine({
         cubeType:'cosmos', 
-        initPos: [-4, CubeEngine.HALF_UNIT, 0],
+        initPos: [-6, CubeEngine.HALF_UNIT, 0],
     }));
     const [inCube, setInCube] = useState(true);
 
@@ -41,6 +48,7 @@ export const AppContextProvider = ({ children }) => {
                 cubeRef,
                 coach,
                 cookie,
+                pipeline,
                 ogre,
                 rocket,
                 chicken,

@@ -622,10 +622,10 @@ function Arm({cubeRef, label}) {
         const sp = sign * p;
 
         handRef.current[0][0].current.rotation.order = 'XZY';
-        handRef.current[0][0].current.rotation.z = sign * p* -0.1;
-        handRef.current[0][0].current.rotation.y = sign * p * -0.1;
-        handRef.current[0][1].current.rotation.y = sign * p * 0.1;
-        handRef.current[0][2].current.rotation.y = sign * p * 0.1;
+        handRef.current[0][0].current.rotation.z = sp * -0.1;
+        handRef.current[0][0].current.rotation.y = sp * -0.1;
+        handRef.current[0][1].current.rotation.y = sp * 0.1;
+        handRef.current[0][2].current.rotation.y = sp * 0.1;
 
         for (let fid = 1; fid < 5; ++fid) {
             handRef.current[fid].forEach(part => {

@@ -414,7 +414,7 @@ export default class CubeEngine {
         this.interactorFlag = {
             face: this.cubeType === 'chicken',
             edge: false,
-            vertex: ['coach', 'ogre'].includes(this.cubeType),
+            vertex: this.cubeType === 'ogre',
             rocket: false,
         };
         this.faces = {};

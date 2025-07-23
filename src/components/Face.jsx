@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import CubeEngine from '../cubenets/CubeEngine.js';
 import ChickenSkin from './meshLibrary/ChickenSkin.jsx';
+import PipelineSkin from './meshLibrary/PipelineSkin.jsx';
 import OgreSkin from './meshLibrary/OgreSkin.jsx';
 import RocketSkin from './meshLibrary/RocketSkin.jsx';
 import CoachSkin from './CoachSkin.jsx';
@@ -38,6 +39,7 @@ function Face({ cubeRef, label }) {
         coach: <CoachSkin cubeRef={cubeRef} label={label} />,
         cookie: <CookieSkin cubeRef={cubeRef} label={label} />,
         chicken: <ChickenSkin cubeRef={cubeRef} label={label} />,
+        pipeline: <PipelineSkin cubeRef={cubeRef} label={label} />,
         ogre: <OgreSkin cubeRef={cubeRef} label={label} />,
         rocket: <RocketSkin cubeRef={cubeRef} label={label} />,
     }

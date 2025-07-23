@@ -52,7 +52,7 @@ export function stdMat(hsl, ev=0, ec=null, flat=false) {
         <meshStandardMaterial
             color={hsl}
             metalness={0.3}
-            roughness={0.8}
+            roughness={0.9}
             side={THREE.DoubleSide}
             flatShading={flat}
             emissive={ev > 0 ? ec || hsl : null}
@@ -80,36 +80,55 @@ export const SIMPLE_MAT = {
 };
 
 export const COOKIE_MAT = {
-    dough: createStdMat('hsl(40, 49.80%, 55.50%)', 0, null, true, 0.3, 0.8),
-    choc: createStdMat('hsl(33, 36%, 16%)', 0, null, true, 0.3, 0.8),
+    dough: createStdMat('hsl(40, 49.80%, 55.50%)', 0, null, true, 0.4, 0.9),
+    choc: createStdMat('hsl(33, 36%, 16%)', 0, null, true, 0.4, 0.9),
     text: createStdMat('hsl(33, 37.90%, 65.90%)', 1, null),
 };
 
 
+const mv_3 = 0.6;
+const rv_3 = 0.9;
+export const POP_MAT = {
+    green: createStdMat('hsl(188, 54%, 72%)', 0, null, false, mv_3, rv_3),
+    red: createStdMat('hsl(350, 49%, 52%)', 0, null, false, mv_3, rv_3),
+    blue: createStdMat('hsl(214, 62%, 57%)', 0, null, false, mv_3, rv_3),
+    yellow: createStdMat('hsl(30, 96%, 64%)', 0, null, false, mv_3, rv_3),
+    pink: createStdMat('hsl(289, 98%, 81%)', 0, null, false, mv_3, rv_3),
+    coffee: createStdMat('hsla(30, 10%, 48%, 1.00)', 0, null, false, mv_3, rv_3),
+    pipe: createStdMat('hsl(165, 28%, 45%)', 0, null, false, 0.9, 0.7),
+    pipeT: createStdMat('hsl(165, 28%, 45%)', 0, null, true, 0.9, 0.7),
+    brick: createStdMat('hsla(9, 36%, 30%, 1.00)', 0, null, true, 0.1, 0.9),
+};
+
+
+const mv = 0.9;
+const rv = 0.9;
 export const OGRE_MAT = {
-    eye: createStdMat('hsl(41, 48%, 70%)', 1, null, false, 0.3, 0.8),
-    body: createStdMat('hsl(218, 38%, 50%)', 0, null, true, 0.3, 0.8),
-    bodyS: createStdMat('hsl(218, 38%, 50%)', 0, null, false, 0.3, 0.8),
-    bodyV: createStdMat('hsl(218, 38%, 50%)', 0.5, null, true, 0.3, 0.8),
-    hair: createStdMat('hsl(0, 0%, 0%)', 0, null, true, 0.3, 0.8),
-    tusk: createStdMat('hsl(37, 37%, 86%)', 0, null, true, 0.3, 0.8),
-    belt: createStdMat('hsl(13, 46%, 39%)', 0, null, true, 0.3, 0.8),
-    cloth0: createStdMat('hsl(255, 16%, 41%)', 0, null, true, 0.3, 0.8),
-    cloth1: createStdMat('hsl(255, 28%, 32%)', 0, null, true, 0.3, 0.8),
-    trunk: createStdMat('hsl(27, 6%, 30%)', 0, null, true, 0.3, 0.8),
-    leaf: createStdMat('hsl(203, 14%, 32%)', 0, null, true, 0.3, 0.8),
+    eye: createStdMat('hsl(41, 48%, 70%)', 1, null, false, mv, rv),
+    body: createStdMat('hsl(218, 38%, 50%)', 0, null, true, mv, rv),
+    bodyS: createStdMat('hsl(218, 38%, 50%)', 0, null, false, mv, rv),
+    bodyV: createStdMat('hsl(218, 38%, 50%)', 0.5, null, true, mv, rv),
+    hair: createStdMat('hsl(0, 0%, 0%)', 0, null, true, mv, rv),
+    tusk: createStdMat('hsl(37, 37%, 86%)', 0, null, true, mv, rv),
+    belt: createStdMat('hsl(13, 46%, 39%)', 0, null, true, mv, rv),
+    cloth0: createStdMat('hsl(255, 16%, 41%)', 0, null, true, mv, rv),
+    cloth1: createStdMat('hsl(255, 28%, 32%)', 0, null, true, mv, rv),
+    trunk: createStdMat('hsl(27, 6%, 30%)', 0, null, true, mv, rv),
+    leaf: createStdMat('hsl(203, 14%, 32%)', 0, null, true, mv, rv),
 };
 
+const mv_5 = 0.6;
+const rv_5 = 0.9;
 export const ROCKET_MAT = {
-    red: createStdMat('hsl(0, 100.00%, 50.00%)', 0, null, true, 0.3, 0.8),
-    blue: createStdMat('hsl(252, 39%, 17%)', 0, null, false, 0.3, 0.8),
-    green: createStdMat('hsl(167, 10.90%, 58.60%)', 0, null, true, 0.3, 0.8),
-    m2: createStdMat('hsl(197, 31%, 62%)', 0, null, true, 0.3, 0.8),
-    metal: createStdMat('hsl(233, 9.80%, 67.80%)', 0, null, true, 0.3, 0.8),
+    red: createStdMat('hsl(0, 100.00%, 50.00%)', 0, null, true, mv_5, rv_5),
+    blue: createStdMat('hsl(252, 39%, 17%)', 0, null, false, mv_5, rv_5),
+    green: createStdMat('hsl(167, 10.90%, 58.60%)', 0, null, true, mv_5, rv_5),
+    m2: createStdMat('hsl(197, 31%, 62%)', 0, null, true, mv_5, rv_5),
+    metal: createStdMat('hsl(233, 9.80%, 67.80%)', 0, null, true, mv_5, rv_5),
     black: createStdMat('hsl(0,0%,0%)', 0, null, true),
-    m3: createStdMat('hsl(191, 38.90%, 67.30%)', 0, null, true, 0.3, 0.8),
-
+    m3: createStdMat('hsl(191, 38.90%, 67.30%)', 0, null, true, mv_5, rv_5),
 };
+
 
 export const CHICKEN_MAT = {
     body: stdMat('hsl(0, 0%, 100%)', 0, null, true),
@@ -177,7 +196,7 @@ export const NEW_VERTICES = {
 
 
 function MatList() {
-    const colorList = [MATLIB, OGRE_MAT][1];
+    const colorList = [MATLIB, OGRE_MAT, ROCKET_MAT][2];
     const a = 0.5;
     const start = Object.keys(colorList).length - 1;
 
