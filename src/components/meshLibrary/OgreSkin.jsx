@@ -933,7 +933,6 @@ function Arm({cubeRef, label}) {
 //-----------------------------------------------------------------------------
 
 export default function OgreSkin({ cubeRef, label }) {
-    console.log('render.OgreSkin');
     return {
         T: <Head cubeRef={cubeRef} />,
         D: <Legs cubeRef={cubeRef} />,

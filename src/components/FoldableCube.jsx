@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 
 
 function FoldableCube({ cubeRef, sliderRef }) {
-    console.log('render.cube');
+    console.log(`render.[${cubeRef.current.cubeType}]`);
     
     const coreRef = useRef(null);
     useEffect(() => {

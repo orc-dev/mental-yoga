@@ -4,7 +4,7 @@ import { VALID_NETS } from './CubeNet';
 import { easeCubicInOut, easeSinInOut } from 'd3-ease';
 import { NEW_VERTICES, HOVER_MAT, SELECT_MAT,
     FACE_HOV_MAT, FACE_SEL_MAT, FACE_CACHE,
-    OGRE_MAT,
+    OGRE_MAT, POP_MAT,
  } from '../components/MatList';
 
 
@@ -504,6 +504,15 @@ export default class CubeEngine {
         this.initCube();
     };
 
+    setPosition(pos) {
+        if (!this.core) return;
+        this.core.current.position.set(...pos);
+    }
+
+    resetToCube() {
+        this.rotateTo('TF');
+    }
+
     rotateTo(rotationKey) {
         if (this.isRotating) {
             return;
@@ -814,6 +823,7 @@ export default class CubeEngine {
         return this.t100 === 100 && !this.isAutoPlay;
     }
 
+    // Vertex events
     handleVertexHover(vid, flag, faceLabel) {
         const vertex = this.vertices[vid]?.current;
         if (!vertex) return;
@@ -852,6 +862,64 @@ export default class CubeEngine {
         }
     }
 
+    // Edge events
+    handleEdgeHover(eid, flag, faceLabel) {
+        const edge = this.edges[eid]?.current; // pipeRef.current
+        if (!edge) return;
+
+        // Decide which material to apply
+        let newMat;
+        if (flag === 1) {
+            newMat = HOVER_MAT;
+        } else {
+            const selected = this.selected.eSet.has(eid);
+            newMat = selected
+                ? SELECT_MAT
+                : {
+                    coach: NEW_VERTICES[faceLabel],
+                    pipeline: POP_MAT.pipe.new,
+                }[this.cubeType];
+        }
+
+        // Traverse the group's children & update their materials
+        edge.traverse((child) => {
+            if (child.isMesh) {
+                child.material = newMat;
+            }
+        });
+    }
+
+    handleEdgeClick(eid, faceLabel) {
+        const edge = this.edges[eid]?.current; // group ref
+        if (!edge) return;
+
+        const mat = {
+            coach: NEW_VERTICES[faceLabel],
+            pipeline: POP_MAT.pipe.new,
+        }[this.cubeType];
+
+        let newMat;
+
+        if (this.selected.eSet.has(eid)) {
+            // Deselect
+            newMat = mat;
+            this.selected.eSet.delete(eid);
+        } else {
+            // Select
+            newMat = SELECT_MAT;
+            this.selected.eSet.add(eid);
+        }
+
+        // Apply the new material to all mesh children
+        edge.traverse((child) => {
+            if (child.isMesh) {
+                child.material = newMat;
+            }
+        });
+    }
+
+
+    // Face events
     handleFaceHover(fid, flag) {
         const face = this.faces[fid]?.current;
         if (!face) return;

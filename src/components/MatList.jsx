@@ -94,10 +94,13 @@ export const POP_MAT = {
     blue: createStdMat('hsl(214, 62%, 57%)', 0, null, false, mv_3, rv_3),
     yellow: createStdMat('hsl(30, 96%, 64%)', 0, null, false, mv_3, rv_3),
     pink: createStdMat('hsl(289, 98%, 81%)', 0, null, false, mv_3, rv_3),
-    coffee: createStdMat('hsla(30, 10%, 48%, 1.00)', 0, null, false, mv_3, rv_3),
+    mortar: createStdMat('hsl(30, 10%, 48%)', 0, null, false, 0.2, 1.0),
     pipe: createStdMat('hsl(165, 28%, 45%)', 0, null, false, 0.9, 0.7),
     pipeT: createStdMat('hsl(165, 28%, 45%)', 0, null, true, 0.9, 0.7),
-    brick: createStdMat('hsla(9, 36%, 30%, 1.00)', 0, null, true, 0.1, 0.9),
+    brick: createStdMat('hsl(9, 36%, 30%)', 0, null, true, 0.1, 1),
+    text: createStdMat('hsl(17, 17%, 92%)', 0.3, null, false, 0.3, 0.8),
+    cover: createStdMat('hsla(0, 0%, 50%, 1.00)', 0, null, true, 0.5, 0.5),
+    coverDark: createStdMat('hsl(0, 0%, 20%)', 0, null, true, 0.3, 0.9),
 };
 
 
@@ -196,13 +199,13 @@ export const NEW_VERTICES = {
 
 
 function MatList() {
-    const colorList = [MATLIB, OGRE_MAT, ROCKET_MAT][2];
+    const colorList = [MATLIB, OGRE_MAT, ROCKET_MAT][0];
     const a = 0.5;
     const start = Object.keys(colorList).length - 1;
 
     const boxMesh = (mat, i) => {
         return (
-            <mesh position={[(i*2 - start) * a,-1,-2]} key={i}>
+            <mesh position={[(i*2 - start) * a, 0, 0]} key={i}>
                 <boxGeometry args={[a, a, a]} />
                 {mat.tag ? mat.tag : mat}
             </mesh>
@@ -210,7 +213,7 @@ function MatList() {
     };
     
     return (
-        <group position={[0, 0, 2]}>
+        <group position={[0, -1.5, 0]}>
             {Object.entries(colorList).map(
                 ([_, mat], i) => boxMesh(mat, i))
             }

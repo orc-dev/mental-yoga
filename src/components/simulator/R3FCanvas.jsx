@@ -123,7 +123,7 @@ function GridAndGround({visible}) {
 }
 
 function R3FCanvas() {
-    const { coach, cookie, chicken, pipeline, ogre, rocket, cosmos, sliderRef } = useAppContext();
+    const { cookie, chicken, pipeline, ogre, rocket, cosmos, sliderRef } = useAppContext();
     const cameraProps = { position: CAMERA_DEFALUT_POS, fov: 75 };
     
     return (
@@ -136,13 +136,12 @@ function R3FCanvas() {
             <GridAndGround visible={false} />
 
             {/* Objects */}
-            <FoldableCube cubeRef={coach} sliderRef={sliderRef}/>
             <FoldableCube cubeRef={cookie} sliderRef={sliderRef}/>
+            <FoldableCube cubeRef={chicken} sliderRef={sliderRef}/>
             <FoldableCube cubeRef={pipeline} sliderRef={sliderRef}/>
             <FoldableCube cubeRef={ogre} sliderRef={sliderRef}/>
-            <FoldableCube cubeRef={cosmos} sliderRef={sliderRef}/>
-            <FoldableCube cubeRef={chicken} sliderRef={sliderRef}/>
             <FoldableCube cubeRef={rocket} sliderRef={sliderRef}/>
+            <FoldableCube cubeRef={cosmos} sliderRef={sliderRef}/>
             
             <MatList />
 

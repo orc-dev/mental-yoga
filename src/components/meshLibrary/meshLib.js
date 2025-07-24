@@ -176,8 +176,8 @@ function pipe_mesh(meshMat, R, r, h, Rm=R, meshPos, meshRot, meshScl) {
             castShadow receiveShadow>
             {meshMat}
             <Geometry >
-                <Base><cylinderGeometry args={[Rm,R,h,36,1]} /></Base>
-                {_sub_cyl([r,r,h,36,1])}
+                <Base><cylinderGeometry args={[Rm,R,h,24,1]} /></Base>
+                {_sub_cyl([r,r,h,24,1])}
             </Geometry>
         </mesh>
     );

@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useAppContext } from '../../contexts/AppContext';
 import NetSelector from './NetSelector';
 import BaseSelector from './BaseSelector';
 import ModeSelector from './ModeSelector';
 import PlayerSlider from './PlayerSlider';
 import RotationControler from './RotationControler';
+import CubeEngine from '../../cubenets/CubeEngine';
 import { Layout, Button, Divider, Typography } from 'antd';
 import { PiVideoCameraFill } from 'react-icons/pi';
 
@@ -55,10 +56,45 @@ function ResetCameraButton() {
 
 function ControlPanel() {
     // eslint-disable-next-line
-    const { cubeRef, coach, cookie, ogre, chicken, pipeline, rocket } = useAppContext();
+    const { cubeRef,
+        cookie, ogre, chicken, 
+        pipeline, rocket, cosmos 
+    } = useAppContext();
 
+    const cubeList = {
+        1: cookie,
+        2: chicken,
+        3: pipeline,
+        4: ogre,
+        5: rocket,
+        6: cosmos,
+    };
+    const posCache = useRef();
+
+    const h = CubeEngine.HALF_UNIT;
     useEffect(() => {
-        cubeRef.current = pipeline.current;
+        const handleKeyDown = (event) => {
+            const key = event.key.toLowerCase();
+            if (!'123456'.includes(key)) {
+                return;
+            }
+            const num = Number(key);
+            
+            if (posCache.current) {
+                cubeRef.current.resetToCube();
+                cubeRef.current.setPosition(posCache.current);
+            }
+
+            cubeRef.current = cubeList[key].current;
+            cubeRef.current.setPosition([0, h, 2]);
+            posCache.current = [7 - num * 2, h, 0];
+        };
+        window.addEventListener('keydown', handleKeyDown);
+
+        // Cleanup on unmount
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
     // eslint-disable-next-line
     }, []);
 

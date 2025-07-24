@@ -6,7 +6,6 @@ import OgreSkin from './meshLibrary/OgreSkin.jsx';
 import RocketSkin from './meshLibrary/RocketSkin.jsx';
 import CoachSkin from './CoachSkin.jsx';
 import CookieSkin from './meshLibrary/CookieSkin.jsx';
-import EdgeSkin from './EdgeSkin.jsx';
 import VertexSkin from './VertexSkin.jsx';
 
 
@@ -56,25 +55,9 @@ function Face({ cubeRef, label }) {
             {/* Face Skin */}
             {faceSkin[cubeRef.current.cubeType]}
 
-            {/* Edge skins */}
-            {cubeRef.current.interactorFlag.edge && 
-                <EdgeInteractorGroup cubeRef={cubeRef} label={label} />}
-
             {/* Vertex skins */}
             {cubeRef.current.interactorFlag.vertex && 
                 <VertexInteractorGroup cubeRef={cubeRef} label={label} />}
-        </group>
-    );
-}
-
-
-function EdgeInteractorGroup({cubeRef, label}) {
-    return (
-        <group>
-            <EdgeSkin cubeRef={cubeRef} faceLabel={label} axis='xp'/>
-            <EdgeSkin cubeRef={cubeRef} faceLabel={label} axis='zn'/>
-            <EdgeSkin cubeRef={cubeRef} faceLabel={label} axis='xn'/>
-            <EdgeSkin cubeRef={cubeRef} faceLabel={label} axis='zp'/>
         </group>
     );
 }
